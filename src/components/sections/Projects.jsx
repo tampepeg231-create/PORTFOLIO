@@ -19,7 +19,7 @@ export const Projects = () => {
                 An Ai that is trained to detect what coffee brand is seen.
               </p>
               <div className="flex flex-wrap gap-2 mb-4">
-                {["React", "Node.js", "AWS", "Docker"].map((tech, key) => (
+                {["Python", "YOLO"].map((tech, key) => (
                   <span
                     key={key}
                     className="bg-blue-500/10 text-blue-500 py-1 px-3 rounded-full text-sm hover:bg-blue-500/20 
@@ -36,7 +36,6 @@ export const Projects = () => {
                   href="#"
                   className="text-blue-400 hover:text-blue-300 transition-colors my-4"
                 >
-                  View Project →
                 </a>
               </div>
             </div>
@@ -53,7 +52,7 @@ export const Projects = () => {
                 Ai that automatically answer phone call.
               </p>
               <div className="flex flex-wrap gap-2 mb-4">
-                {["Python", "TensorFlow", "D3.js", "Flask"].map((tech, key) => (
+                {["Vapi.ai Platform"].map((tech, key) => (
                   <span
                     key={key}
                     className="
@@ -73,7 +72,6 @@ export const Projects = () => {
                   href="#"
                   className="text-blue-400 hover:text-blue-300 transition-colors my-4"
                 >
-                  View Project →
                 </a>
               </div>
             </div>
@@ -91,7 +89,7 @@ export const Projects = () => {
                 AI that sound an alarm if human caught on the camera.
               </p>
               <div className="flex flex-wrap gap-2 mb-4">
-                {["Next.js", "TypeScript", "Stripe", "PostgreSQL"].map(
+                {["Python"].map(
                   (tech) => (
                     <span
                       key={tech}
@@ -113,7 +111,6 @@ export const Projects = () => {
                   href="#"
                   className="text-blue-400 hover:text-blue-300 transition-colors my-4"
                 >
-                  View Project →
                 </a>
               </div>
             </div>
@@ -126,12 +123,12 @@ export const Projects = () => {
               transition-all
             "
             >
-              <h3 className="text-xl font-bold mb-2">Mobile Portfolio</h3>
+              <h3 className="text-xl font-bold mb-2">Mobile App</h3>
               <p className="text-gray-400 mb-4">
-                A mobile portfolio.
+                A portfolio in a phone.
               </p>
               <div className="flex flex-wrap gap-2 mb-4">
-                {["Socket.IO", "Express", "React", "Redis"].map((tech, key) => (
+                {["Java"].map((tech, key) => (
                   <span
                     key={key}
                     className="
@@ -151,7 +148,6 @@ export const Projects = () => {
                   href="#"
                   className="text-blue-400 hover:text-blue-300 transition-colors my-4"
                 >
-                  View Project →
                 </a>
               </div>
             </div>
@@ -161,3 +157,4 @@ export const Projects = () => {
     </section>
   );
 };
+

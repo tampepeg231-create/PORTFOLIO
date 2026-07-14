@@ -1,30 +1,26 @@
-import { useState } from "react";
+import { useForm, ValidationError } from "@formspree/react";
 import { RevealOnScroll } from "../RevealOnScroll";
-import emailjs from "emailjs-com";
 
 export const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
+  const [state, handleSubmit] = useForm("mqerkvzp");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    emailjs
-      .sendForm(
-        import.meta.env.VITE_SERVICE_ID,
-        import.meta.env.VITE_TEMPLATE_ID,
-        e.target,
-        import.meta.env.VITE_PUBLIC_KEY
-      )
-      .then((result) => {
-        alert("Message Sent!");
-        setFormData({ name: "", email: "", message: "" });
-      })
-      .catch(() => alert("Oops! Something went wrong. Please try again."));
-  };
+  if (state.succeeded) {
+    return (
+      <section
+        id="contact"
+        className="min-h-screen flex items-center justify-center py-20"
+      >
+        <RevealOnScroll>
+          <div className="px-4 w-full min-w-[300px] md:w-[500px] sm:w-2/3 p-6 text-center">
+            <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-blue-500 to-cyan-400 bg-clip-text text-transparent">
+              Message Sent!
+            </h2>
+            <p className="text-white/70">Thanks for reaching out — I'll get back to you soon.</p>
+          </div>
+        </RevealOnScroll>
+      </section>
+    );
+  }
 
   return (
     <section
@@ -44,12 +40,14 @@ export const Contact = () => {
                 id="name"
                 name="name"
                 required
-                value={formData.name}
                 className="w-full bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
                 placeholder="Name..."
-                onChange={(e) =>
-                  setFormData({ ...formData, name: e.target.value })
-                }
+              />
+              <ValidationError
+                prefix="Name"
+                field="name"
+                errors={state.errors}
+                className="text-red-400 text-sm mt-1"
               />
             </div>
 
@@ -59,12 +57,14 @@ export const Contact = () => {
                 id="email"
                 name="email"
                 required
-                value={formData.email}
                 className="w-full bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
                 placeholder="example@gmail.com"
-                onChange={(e) =>
-                  setFormData({ ...formData, email: e.target.value })
-                }
+              />
+              <ValidationError
+                prefix="Email"
+                field="email"
+                errors={state.errors}
+                className="text-red-400 text-sm mt-1"
               />
             </div>
 
@@ -74,20 +74,23 @@ export const Contact = () => {
                 name="message"
                 required
                 rows={5}
-                value={formData.message}
                 className="w-full bg-white/5 border border-white/10 rounded px-4 py-3 text-white transition focus:outline-none focus:border-blue-500 focus:bg-blue-500/5"
                 placeholder="Your Message..."
-                onChange={(e) =>
-                  setFormData({ ...formData, message: e.target.value })
-                }
+              />
+              <ValidationError
+                prefix="Message"
+                field="message"
+                errors={state.errors}
+                className="text-red-400 text-sm mt-1"
               />
             </div>
 
             <button
               type="submit"
-              className="w-full bg-blue-500 text-white py-3 px-6 rounded font-medium transition relative overflow-hidden hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(59,130,246,0.4)]"
+              disabled={state.submitting}
+              className="w-full bg-blue-500 text-white py-3 px-6 rounded font-medium transition relative overflow-hidden hover:-translate-y-0.5 hover:shadow-[0_0_15px_rgba(59,130,246,0.4)] disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              Send Message
+              {state.submitting ? "Sending..." : "Send Message"}
             </button>
           </form>
         </div>
